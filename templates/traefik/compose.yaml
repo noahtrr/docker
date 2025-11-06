@@ -37,7 +37,7 @@ services:
       - "traefik.http.routers.traefik.entrypoints=websecure"
       - "traefik.http.services.traefik.loadbalancer.server.port=8080"
       # Middleware for OIDC authentication
-      #- "traefik.http.routers.traefik.middlewares=oidc-auth"
+      - "traefik.http.routers.traefik.middlewares=oidc-auth"
       - "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.secret=${OIDC_SECRET}" # Please change this secret for your setup
       - "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.url=${OIDC_URL}"
       - "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.clientid=${OIDC_CLIENTID}"
