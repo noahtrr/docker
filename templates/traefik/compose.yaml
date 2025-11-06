@@ -29,8 +29,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /letsencrypt:/letsencrypt
-    networks:
-      - proxy
     restart: unless-stopped
     labels:
       # Service Labels
@@ -45,7 +43,3 @@ services:
       - "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.clientid=${OIDC_CLIENTID}"
       - "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.clientsecret=${OIDC_CLIENTSECRET}"
       - "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.scopes=openid email profile"
-
-networks:
-  proxy:
-    external: false
