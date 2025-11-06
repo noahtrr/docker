@@ -26,6 +26,10 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.secret=MLFs4TT99kOOq8h3UAVRtYoCTDYXiRcZ" # Please change this secret for your setup
+      - "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.url=komodo.avii.ovh"
+      - "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.clientid=yourclientidhere"
+      - "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.clientsecret=yourclientsecrethere"
+      - "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.scopes=openid email profile"
       - "traefik.http.routers.traefik.middlewares=oidc-auth"
 
 networks:
