@@ -28,6 +28,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.rule=Host(`traefik.avii.ovh`)"
       - "traefik.http.routers.traefik.entrypoints=web"
+      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
       # Middleware for OIDC authentication
       - "traefik.http.routers.traefik.middlewares=oidc-auth"
       - "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.secret=MLFs4TT99kOOq8h3UAVRtYoCTDYXiRcZ" # Please change this secret for your setup
