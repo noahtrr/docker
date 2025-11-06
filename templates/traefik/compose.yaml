@@ -1,6 +1,6 @@
 services:
   traefik:
-    image: traefik:lateset
+    image: traefik:latest
     command:
       - "--api.dashboard=true"
       - "--api.insecure=true"
