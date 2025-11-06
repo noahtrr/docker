@@ -1,0 +1,12 @@
+http:
+  middlewares:
+    oidc-auth:
+      plugin:
+        traefik-oidc-auth:
+          LogLevel: DEBUG
+          Secret: "MLFs4TT99kOOq8h3UAVRtYoCTDYXiRcZ" # Please change this secret for your setup
+          Provider:
+            Url: "${PROVIDER_URL}"
+            ClientId: "${CLIENT_ID}"
+            ClientSecret: "${CLIENT_SECRET}"
+            UsePkce: true
