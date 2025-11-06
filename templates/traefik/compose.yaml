@@ -43,3 +43,9 @@ services:
       - "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.clientid=${OIDC_CLIENTID}"
       - "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.clientsecret=${OIDC_CLIENTSECRET}"
       - "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.scopes=openid email profile"
+    networks:
+      - traefik_proxy
+
+networks:
+  traefik_proxy:
+    external: true
