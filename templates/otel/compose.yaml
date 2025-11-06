@@ -8,6 +8,8 @@ services:
       - '3000:3000'
     stdin_open: true
     tty: true
+    environment:
+      - GF_SERVER_ROOT_URL=${FQDN_GRAFANA}
     labels:
       # Service Labels
       - "traefik.enable=true"
