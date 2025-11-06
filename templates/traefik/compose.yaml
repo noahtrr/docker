@@ -17,6 +17,8 @@ services:
       - "--entrypoints.websecure.http.tls.certresolver=lenc"
       - "--log.level=INFO"
       - "--accesslog=true"
+      - "--tracing=true"
+      - "--metrics.prometheus=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--providers.docker.network=traefik_proxy"
