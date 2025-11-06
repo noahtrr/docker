@@ -11,9 +11,9 @@ services:
     labels:
       # Service Labels
       - "traefik.enable=true"
-      - "traefik.http.routers.pocketid.rule=Host(`${FQDN_TRAEFIK}`)"
-      - "traefik.http.routers.pocketid.entrypoints=websecure"
-      - "traefik.http.services.pocketid.loadbalancer.server.port=3000"
+      - "traefik.http.routers.otel.rule=Host(`${FQDN_TRAEFIK}`)"
+      - "traefik.http.routers.otel.entrypoints=websecure"
+      - "traefik.http.services.otel.loadbalancer.server.port=3000"
     networks:
       - traefik_proxy
 
