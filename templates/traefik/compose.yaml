@@ -11,6 +11,10 @@ services:
       - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
       - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
       - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
+      - "--certificatesresolvers.lenc.acme.email=ssl@avii.ovh"
+      - "--certificatesresolvers.lenc.acme.storage=/letsencrypt/acme.json" # Path inside container volume
+      - "--certificatesresolvers.lenc.acme.httpchallenge.entrypoint=web"
+      - "--entrypoints.websecure.http.tls.certresolver=lenc"
       - "--log.level=INFO"
       - "--accesslog=true"
       - "--providers.docker=true"
