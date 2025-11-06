@@ -23,6 +23,8 @@ services:
     networks:
       - proxy
     restart: unless-stopped
+    labels:
+      - "traefik.http.routers.traefik.middlewares=oidc-auth@file"
 
 networks:
   proxy:
