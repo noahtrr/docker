@@ -11,6 +11,8 @@ services:
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--providers.docker.network=proxy"
+      - "--experimental.plugins.traefik-oidc-auth.modulename=github.com/sevensolutions/traefik-oidc-auth"
+      - "--experimental.plugins.traefik-oidc-auth.version=v0.16.0"
     ports:
       - "80:80"
       - "443:443"
