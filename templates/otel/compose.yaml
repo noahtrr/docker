@@ -19,7 +19,7 @@ services:
     networks:
       - traefik_proxy
     volumes:
-      - otel-lgtm-data:/var/lib/grafana
+      - /otel-lgtm-data:/var/lib/grafana
 
 networks:
   traefik_proxy:
