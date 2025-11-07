@@ -18,6 +18,8 @@ services:
       - "traefik.http.services.otel.loadbalancer.server.port=3000"
     networks:
       - traefik_proxy
+    volumes:
+      - otel-lgtm-data:/var/lib/grafana
 
 networks:
   traefik_proxy:
