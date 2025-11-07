@@ -13,6 +13,8 @@ services:
       - MAXMIND_LICENSE_KEY=${MAXMIND_LICENSE_KEY}
       - PUID=1000
       - PGID=1000
+      - TRACING_ENABLED=true
+      - METRICS_ENABLED=true
     labels:
       # Service Labels
       - "traefik.enable=true"
