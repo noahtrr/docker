@@ -15,6 +15,9 @@ services:
       - PGID=1000
       - TRACING_ENABLED=true
       - METRICS_ENABLED=true
+      - OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=${OTEL_TRACING_ENDPOINT}
+      - OTEL_EXPORTER_OTLP_METRICS_ENDPOINT=${OTEL_METRICS_ENDPOINT}
+      - OTEL_EXPORTER_OTLP_LOGS_ENDPOINT=${OTEL_LOG_ENDPOINT}
     labels:
       # Service Labels
       - "traefik.enable=true"
