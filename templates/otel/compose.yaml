@@ -20,6 +20,7 @@ services:
       - traefik_proxy
     volumes:
       - /otel-lgtm-data:/var/lib/grafana
+    restart: unless-stopped
 
 networks:
   traefik_proxy:
