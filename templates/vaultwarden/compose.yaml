@@ -1,0 +1,30 @@
+services:
+  vaultwarden:
+    hostname: "vaultwarden"
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    environment:
+      DOMAIN: ${FQDN_VW}
+      SSO_ENABLED: "true"
+      SSO_SIGNUPS_MATCH_EMAIL: "true"
+      SSO_SCOPES: "openid profile email groups"
+      SSO_AUTHORITY: ${SSO_AUTHORITY}
+      SSO_CLIENT_ID: ${SSO_CLIENT_ID}
+      SSO_CLIENT_SECRET: ${SSO_CLIENT_SECRET}
+    volumes:
+      - /vw-data/:/data/
+    ports:
+      - 8000:80
+    labels:
+      # Service Labels
+      - "traefik.enable=true"
+      - "traefik.http.routers.otel.rule=Host(`${FQDN_TRAEFIK}`)"
+      - "traefik.http.routers.otel.entrypoints=websecure"
+      - "traefik.http.services.otel.loadbalancer.server.port=80"
+    networks:
+      - traefik_proxy
+
+networks:
+  traefik_proxy:
+    external: true
