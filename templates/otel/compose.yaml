@@ -1,6 +1,7 @@
 services:
   otel-lgtm:
     hostname: "otel-lgtm"
+    container_name: "otel-lgtm"
     image: grafana/otel-lgtm:latest
     ports:
       - '4318:4318'

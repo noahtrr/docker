@@ -1,6 +1,7 @@
 services:
   pocket-id:
     hostname: "pocket-id"
+    container_name: "pocket-id"
     image: ghcr.io/pocket-id/pocket-id:v1
     restart: unless-stopped
     ports:

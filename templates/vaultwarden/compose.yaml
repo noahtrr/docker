@@ -1,6 +1,7 @@
 services:
   vaultwarden:
     hostname: "vaultwarden"
+    container_name: "vaultwarden"
     image: vaultwarden/server:latest
     container_name: vaultwarden
     restart: unless-stopped
