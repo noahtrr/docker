@@ -22,6 +22,8 @@ services:
       - GF_AUTH_GENERIC_OAUTH_LOGIN_ATTRIBUTE_PATH=preferred_username
       - GF_AUTH_GENERIC_OAUTH_GROUPS_ATTRIBUTE_PATH=groups
       - GF_AUTH_GENERIC_OAUTH_NAME_ATTRIBUTE_PATH=name
+      - GF_ROLE_ATTRIBUTE_PATH=(groups[*], 'admin') && 'Admin' || contains(groups[*], 'editor') && 'Editor' || 'Viewer'
+      - GF_ALLOW_ASSIGN_GRAFANA_ADMIN=true
     labels:
       # Service Labels
       - "traefik.enable=true"
