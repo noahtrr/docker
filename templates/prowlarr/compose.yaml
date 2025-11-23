@@ -16,12 +16,7 @@ services:
       - "traefik.http.routers.prowlarr.entrypoints=websecure"
       - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
       # Middleware for OIDC authentication
-      #- "traefik.http.routers.prowlarr.middlewares=oidc-auth"
-      #- "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.secret=${OIDC_SECRET}" # Please change this secret for your setup
-      #- "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.url=${OIDC_URL}"
-      #- "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.clientid=${OIDC_CLIENTID}"
-      #- "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.clientsecret=${OIDC_CLIENTSECRET}"
-      #- "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.scopes=openid email profile"
+      - "traefik.http.routers.prowlarr.middlewares=oidc-auth" # change traefik callback url to *.FQDN
     networks:
       - traefik_proxy
     volumes:
