@@ -1,0 +1,36 @@
+services:
+  lidarr:
+    hostname: "lidarr"
+    container_name: "lidarr"
+    image: lscr.io/linuxserver/lidarr:latest
+    ports:
+      - '8686:8686'
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Europe/Berlin
+    labels:
+      # Service Labels
+      - "traefik.enable=true"
+      - "traefik.http.routers.lidarr.rule=Host(`${FQDN_TRAEFIK}`)"
+      - "traefik.http.routers.lidarr.entrypoints=websecure"
+      - "traefik.http.services.lidarr.loadbalancer.server.port=8686"
+      # Middleware for OIDC authentication
+      - "traefik.http.routers.lidarr.middlewares=oidc-auth" # change traefik callback url to *.FQDN
+    networks:
+      - traefik_proxy
+    volumes:
+      - lidarr_data:/config
+      - downloads:/downloads
+      - music:/music
+    restart: unless-stopped
+
+
+networks:
+  traefik_proxy:
+    external: true
+
+volumes:
+  lidarr_data:
+  downloads:
+  music:  

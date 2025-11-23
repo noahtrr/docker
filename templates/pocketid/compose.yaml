@@ -7,7 +7,7 @@ services:
     ports:
       - 1411:1411
     volumes:
-      - "/data:/app/data"
+      - data:/app/data
     environment:
       - APP_URL=${POCKETID_APP_URL}
       - TRUST_PROXY=${TRUST_PROXY}
@@ -37,3 +37,6 @@ services:
 networks:
   traefik_proxy:
     external: true
+
+volumes:
+  data:

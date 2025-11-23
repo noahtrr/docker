@@ -6,8 +6,8 @@ services:
     ports:
       - '9696:9696'
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
       - TZ=Europe/Berlin
     labels:
       # Service Labels
@@ -20,10 +20,13 @@ services:
     networks:
       - traefik_proxy
     volumes:
-      - /prowlarr_data:/data:/config
+      - prowlarr_data:/config
     restart: unless-stopped
 
 
 networks:
   traefik_proxy:
     external: true
+
+volumes:
+  prowlarr_data:

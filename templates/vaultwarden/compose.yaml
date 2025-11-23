@@ -14,7 +14,7 @@ services:
       SSO_CLIENT_ID: ${SSO_CLIENT_ID}
       SSO_CLIENT_SECRET: ${SSO_CLIENT_SECRET}
     volumes:
-      - /vw-data/:/data/
+      - vw-data/:/data/
     ports:
       - 8000:80
     labels:
@@ -29,3 +29,6 @@ services:
 networks:
   traefik_proxy:
     external: true
+
+volumes:
+  vw-data:

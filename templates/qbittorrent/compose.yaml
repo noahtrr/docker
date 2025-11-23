@@ -1,0 +1,38 @@
+services:
+  qbittorrent:
+    hostname: "qbittorrent"
+    container_name: "qbittorrent"
+    image: lscr.io/linuxserver/qbittorrent:latest
+    ports:
+      - '8081:8081'
+      - '6881:6881'
+      - '6881:6881/udp'
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Europe/Berlin
+      - WEBUI_PORT=8081
+      - TORRENTING_PORT=6881
+    labels:
+      # Service Labels
+      - "traefik.enable=true"
+      - "traefik.http.routers.qbittorrent.rule=Host(`${FQDN_TRAEFIK}`)"
+      - "traefik.http.routers.qbittorrent.entrypoints=websecure"
+      - "traefik.http.services.qbittorrent.loadbalancer.server.port=8081"
+      # Middleware for OIDC authentication
+      - "traefik.http.routers.qbittorrent.middlewares=oidc-auth" # change traefik callback url to *.FQDN
+    networks:
+      - traefik_proxy
+    volumes:
+      - qbittorrent_data:/config
+      - downloads:/downloads
+    restart: unless-stopped
+
+
+networks:
+  traefik_proxy:
+    external: true
+
+volumes:
+  qbittorrent_data:
+  downloads:

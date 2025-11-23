@@ -36,9 +36,12 @@ services:
     networks:
       - traefik_proxy
     volumes:
-      - /otel-lgtm-data:/var/lib/grafana
+      - otel-lgtm-data:/var/lib/grafana
     restart: unless-stopped
 
 networks:
   traefik_proxy:
     external: true
+
+volumes:
+  otel-lgtm-data:
