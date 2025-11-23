@@ -1,0 +1,34 @@
+services:
+  prowlarr:
+    hostname: "prowlarr"
+    container_name: "prowlarr"
+    image: lscr.io/linuxserver/prowlarr:latest
+    ports:
+      - '9696:9696'
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    labels:
+      # Service Labels
+      - "traefik.enable=true"
+      - "traefik.http.routers.prowlarr.rule=Host(`${FQDN_TRAEFIK}`)"
+      - "traefik.http.routers.prowlarr.entrypoints=websecure"
+      - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
+      # Middleware for OIDC authentication
+      #- "traefik.http.routers.prowlarr.middlewares=oidc-auth"
+      #- "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.secret=${OIDC_SECRET}" # Please change this secret for your setup
+      #- "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.url=${OIDC_URL}"
+      #- "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.clientid=${OIDC_CLIENTID}"
+      #- "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.clientsecret=${OIDC_CLIENTSECRET}"
+      #- "traefik.http.middlewares.oidc-auth.plugin.traefik-oidc-auth.provider.scopes=openid email profile"
+    networks:
+      - traefik_proxy
+    volumes:
+      - /prowlarr_data:/data:/config
+    restart: unless-stopped
+
+
+networks:
+  traefik_proxy:
+    external: true
